@@ -7,7 +7,7 @@ const rg = new Registration()
 const si = new SignInPage()
 
 
-describe('Test Suites 4 Test cases', function () {
+describe('Test Suites contain 4 Test cases', function () {
     before('Visit URL', function () {
         // baseURL DEFINE IN CYPRESS.JSON FILE 
         cy.visit("/");
@@ -43,7 +43,7 @@ describe('Test Suites 4 Test cases', function () {
         rg.zipcodedata('H2C1R4')
         rg.ssndata1('9897345384')
         rg.phoneNumberdata('+1438-456-9090')
-        rg.usernamedata('test113')
+        rg.usernamedata('test216')
         rg.passworddata('Test@')
         rg.confirmpassworddata('Test@')
         rg.register();
@@ -60,7 +60,7 @@ describe('Test Suites 4 Test cases', function () {
     //TEST CASE 2
     it('Sign In_Open new Account with Assertions', function () {
 
-        si.usernamedata('test113')
+        si.usernamedata('test216')
         si.passwordata('Test@')
         si.login();
         si.opennewaccount_link();
@@ -77,7 +77,7 @@ describe('Test Suites 4 Test cases', function () {
     // TEST CASE 3
     it('Transfer of funds with Assertions', function () {
 
-        tf.usernamedata('test113')
+        tf.usernamedata('test216')
         tf.passwordata('Test@')
         tf.login();
         tf.transfer_funds_link();
@@ -95,7 +95,7 @@ describe('Test Suites 4 Test cases', function () {
     //TEST CASE 4
     it('New Update Profile with Assertions', function () {
 
-        rg.enterlusername('test113')
+        rg.enterlusername('test216')
         rg.enterlpassword('Test@')
         rg.login()
         rg.update_profile_link()
