@@ -1,6 +1,6 @@
 //<reference types = "cypress" />
 //above reference is the intellisense and it shows suggestions
-class SignInPage {
+class OpenAccount {
 
 
   usernamedata(value) {
@@ -31,8 +31,6 @@ class SignInPage {
   selectaccounttype() {
     const field = cy.get('select[id="type"]');
     field.select("1").should("have.value", "1");
-
-    // return this;
   }
   //Create Savings Account
   createsavingsacc() {
@@ -41,18 +39,18 @@ class SignInPage {
   }
   //After successful opening of New Savings Account - Verfiy different assertions of Text like Account Opened! etc.. and Title
   success_savings_acc_message() {
-    return cy.xpath("//div[@id='rightPanel']/div/div/h1");
+    return cy.xpath("//div[@id='rightPanel']/div/div/h1").should('have.text', 'Account Opened!');
   }
   success_savings_acc_message1() {
-    return cy.get('.ng-scope > p:nth-child(2)');
+    return cy.get('.ng-scope > p:nth-child(2)').invoke('text').should('include', 'Congratulations, your account');
   }
-  logout1() {
-
-    const field = cy.contains("Log Out");
-    field.click();
-
-    //return this;
+  successsignup_title() {
+    return cy.title().should("eq", "ParaBank | Open Account");
   }
+  successsignup_Url() {
+    return cy.url().should('be.equal', 'https://parabank.parasoft.com/parabank/openaccount.htm');
+  }
+
 }
 
-export default SignInPage;
+export default OpenAccount;

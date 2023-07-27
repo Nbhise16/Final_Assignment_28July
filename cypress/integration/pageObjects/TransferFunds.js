@@ -1,7 +1,6 @@
 //<reference types = "cypress" />
 //above reference is the intellisense and it shows suggestions
 class TransferFunds {
- 
 
   usernamedata(value) {
     const field = cy.get('.login:nth-child(2) > .input');
@@ -21,14 +20,6 @@ class TransferFunds {
     const button = cy.get('input[value="Log In"]');
     button.click();
   }
-  logout2() {
-
-    const field = cy.contains("Log Out");
-    field.click();
-
-    //return this;
-  }
-
 
   transfer_funds_link() {
     const link = cy.xpath("//a[contains(text(),'Transfer Funds')]");
@@ -41,18 +32,18 @@ class TransferFunds {
   //Select From Account
   selectfromacct_no() {
     const field = cy.get('#fromAccountId > option')
-    .eq(0)
-    .then(element => cy.get('#fromAccountId').select(element.val()))
-    
-   // field.select("14232").should("have.value", "14232");
+      .eq(0)
+      .then(element => cy.get('#fromAccountId').select(element.val()))
+
+    // field.select("14232").should("have.value", "14232");
 
     // return this;
   }
   //Select To Account
   selecttoacct_no() {
     const field = cy.get('#toAccountId > option')
-  .eq(1)
-  .then(element => cy.get('#toAccountId').select(element.val()))
+      .eq(1)
+      .then(element => cy.get('#toAccountId').select(element.val()))
     //field.select("14454").should("have.value", "14454");
   }
 
@@ -60,23 +51,28 @@ class TransferFunds {
   enter_amount(value) {
     const field = cy.get('#amount');
     field.type(value);
-
     return this;
   }
 
   //Funds Transfer Event
   transfer() {
-    const amt_transfer = cy.xpath("//input[@value='Transfer']");
+    const amt_transfer = cy.xpath("//input[@value='Transfer']")
     amt_transfer.click();
   }
   //After successful transfer of funds - Verfiy different assertions of Text like  Transfer of funds is Complete etc.. and Title
+
   success_funds_transfer_message() {
-    return cy.get(".title");
+    return cy.get('.title').should('have.text', 'Transfer Complete!');
   }
   success_amount_transfer() {
-    return cy.get('.ng-scope > p:nth-child(2)');
+    return cy.get('.ng-scope > p:nth-child(2)').invoke('text').should('include', 'has been transferred from account');
   }
-
+  successtransferfunds_title() {
+    return cy.title().should("eq", "ParaBank | Transfer Funds");
+  }
+  successtransferfunds_Url() {
+    return cy.url().should('be.equal', 'https://parabank.parasoft.com/parabank/transfer.htm');
+  }
 }
 
 export default TransferFunds;

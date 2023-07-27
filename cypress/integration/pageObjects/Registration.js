@@ -1,6 +1,6 @@
 //<reference types = "cypress" />
 class Registration {
-  
+
 
   //Click on Register link to start registration process for a new user
   register_link(value) {
@@ -30,12 +30,7 @@ class Registration {
 
     return this;
   }
-  update_profile_link(value) {
-    const field = cy.contains('Update Contact Info');
-    field.click();
 
-    return this;
-  }
   //Update Profile
   enterlusername(value) {
     const field = cy.get(':nth-child(2) > .input');
@@ -54,7 +49,9 @@ class Registration {
     const button = cy.get('input[value="Log In"]');
     button.click();
   }
-
+  success_update_phonenumber() {
+    return cy.xpath("//input[@id='customer.phoneNumber']").should('have.value', '111111111');
+  }
 
   updatefname(value) {
     const field = cy.xpath("//input[@id='customer.firstName']");
@@ -92,9 +89,17 @@ class Registration {
     field.type(value);
     return this;
   }
+  updatephoneno2() {
+    const field = cy.xpath("//input[@id='customer.phoneNumber']");
+    field.clear();
+  }
   updatephoneno1() {
     return cy.xpath("//input[@id='customer.phoneNumber']");
 
+  }
+  update_profile_link() {
+    const field = cy.contains('Update Contact Info');
+    field.click();
   }
   profileclick() {
     const profile_btn = cy.xpath("//input[@value='Update Profile']");
@@ -110,14 +115,7 @@ class Registration {
     return cy.xpath("//div[@id='rightPanel']/div/div/p");
   }
 
-  //Assertion for checking Phone number value updated
-  Successvaluephone(myVal) {
-    cy.xpath("//input[@id='customer.phoneNumber']").invoke('val').then(val => {
-      const myVal = val;
-      expect(myVal).to.equal('919893444567')
-      return this;
-    })
-  }
+
   //==========
   citydata(value) {
     const field = cy.xpath("//input[@id='customer.address.city']");
@@ -175,22 +173,20 @@ class Registration {
   //Assertion
 
   confirmationregistermessage() {
-    return cy.get('.title');
+    return cy.get('.title').invoke('text').should('include', 'Welcome ');;
   }
 
   confirmationregistermessage1() {
-    return cy.get('#rightPanel > p');
+    return cy.get('#rightPanel > p').should('have.text', 'Your account was created successfully. You are now logged in.');
   }
+  navigatetoregistrationURL() {
 
-  logout() {
+    return cy.url().should('be.equal', 'https://parabank.parasoft.com/parabank/register.htm')
 
-    const field = cy.contains("Log Out");
-    field.click();
-
-    //return this;
+  }
+  success_registration_title() {
+    cy.title().should("eq", "ParaBank | Customer Created")
   }
 
 }
-
-
 export default Registration;
