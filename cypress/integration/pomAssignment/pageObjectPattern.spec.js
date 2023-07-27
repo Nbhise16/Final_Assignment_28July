@@ -11,7 +11,7 @@ const up = new UpdateProfile()
 const tf = new TransferFunds()
 
 //Username Defined for all test cases to use
-const un = "test182"
+const un = "test216"
 const pwd = "Test@123"
 
 //******TEST SUITES**************** */
@@ -55,7 +55,6 @@ describe('Test Suites contain 4 Test cases', function () {
         rg.zipcodedata('H2C1R4')
         rg.ssndata1('9897345384')
         rg.phoneNumberdata('4384569090')
-        //rg.usernamedata('test216')
         rg.usernamedata(un)
         rg.passworddata(pwd)
         rg.confirmpassworddata(pwd)
@@ -140,7 +139,7 @@ describe('Test Suites contain 4 Test cases', function () {
         //Assertion for checking Phone number value updated -PASS matched with previous value not new updated data 
         //up.success_update_phonenumber1()
         // Verify Updated Phone Number == Assertion
-        //Assertion for checking Phone number value updated -FAIL Matched with new value 
+        //Assertion for checking Phone number value updated -Pass (IF website Update Profile functionality is working fine when logout)
         up.success_update_phonenumber()
 
     })
