@@ -11,7 +11,7 @@ const up = new UpdateProfile()
 const tf = new TransferFunds()
 
 //Username Defined for all test cases to use
-const un = "test216"
+const un = "test182"
 const pwd = "Test@123"
 
 //******TEST SUITES**************** */
@@ -138,7 +138,7 @@ describe('Test Suites contain 4 Test cases', function () {
         up.successupd_title()
         up.update_profile_link()
         //Assertion for checking Phone number value updated -PASS matched with previous value not new updated data 
-        up.success_update_phonenumber1()
+        //up.success_update_phonenumber1()
         // Verify Updated Phone Number == Assertion
         //Assertion for checking Phone number value updated -FAIL Matched with new value 
         up.success_update_phonenumber()
